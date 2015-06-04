@@ -5,8 +5,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    new_message = Message.create(user: params[:user], chatroom: params[:chatroom], message: params[:message])
-    render json: new_message
+    begin
+      new_message = Message.create(user: params[:user], chatroom: params[:chatroom], message: params[:message])
+      render json: new_message
+    rescue
+    rescue StandardError => error
+      render json { error.message }
   end
 
   def show
@@ -15,9 +19,13 @@ class MessagesController < ApplicationController
 
   def sort
     users = []
+    messages = []
+    chatrooms = []
     all_messages =  Message.all
     all_messages.each do |message|
       users.push(message.user)
+      messages.push(message.message)
+      chatrooms.push(message.chatroom)
     end
   end
 
