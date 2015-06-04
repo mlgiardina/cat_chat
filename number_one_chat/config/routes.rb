@@ -2,13 +2,11 @@ Rails.application.routes.draw do
 
   get 'messages', to: 'messages#index'
 
-  # get 'stats', to: 'messages#sort'
+  post 'messages', to: 'messages#create'
 
-  # post 'messages', to: 'messages#create'
+  get 'messages/:id', to: 'messages#show'
 
-  # get 'messages/:id', to: 'messages#show'
-
-  # root 'messages#index'
+  root 'messages#index'
 
   match '*not_found_route', to: 'application#skip_cors', via: [:get, :post, :put, :delete]
   # The priority is based upon order of creation: first created -> highest priority.
