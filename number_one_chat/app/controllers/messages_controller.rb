@@ -12,4 +12,13 @@ class MessagesController < ApplicationController
   def show
     render json: Message.find(params[:id])
   end
+
+  def sort
+    users = []
+    all_messages =  Message.all
+    all_messages.each do |message|
+      users.push(message.user)
+    end
+  end
+
 end

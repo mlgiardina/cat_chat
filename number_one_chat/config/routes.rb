@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'messages', to: 'messages#index'
 
+  get 'stats', to: 'messages#sort'
+
   post 'messages', to: 'messages#create'
 
   get 'messages/:id', to: 'messages#show'
