@@ -8,8 +8,6 @@ Bundler.require(*Rails.groups)
 
 module NumberOneChat
   class Application < Rails::Application
-    module MyAppName
-  class Application < Rails::Application
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin'   => '*',
       'Access-Control-Allow-Methods'  => 'POST, PUT, DELETE, GET, OPTIONS',
