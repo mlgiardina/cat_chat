@@ -8,9 +8,11 @@ class MessagesController < ApplicationController
     begin
       new_message = Message.create(user: params[:user], chatroom: params[:chatroom], message: params[:message])
       render json: new_message
-    rescue
+    rescue ActiveRecord::RecordNotFound => error
+      render json: { error.message }, status 404
     rescue StandardError => error
-      render json { error.message }
+      render json { error.message }, status 422
+    end
   end
 
   def show
