@@ -30,5 +30,4 @@ class MessagesController < ApplicationController
       chatrooms.push(message.chatroom)
     end
   end
-
 end
