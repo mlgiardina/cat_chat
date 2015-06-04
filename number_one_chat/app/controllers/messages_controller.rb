@@ -5,17 +5,23 @@ class MessagesController < ApplicationController
   end
 
   def create
-    # begin
+    begin
       render json: Message.create(user: params[:user], chatroom: params[:chatroom], message: params[:message])
-    # rescue ActiveRecord::RecordNotFound => error
-    #   render json: { error.message }, status 404
-    # rescue StandardError => error
-    #   render json: { error.message }, status 422
-    # end
+    rescue ActiveRecord::RecordNotFound => error
+      render json: { error: error.message }, status: 404
+    rescue StandardError => error
+      render json: { error: error.message }, status: 422
+    end
   end
 
   def show
-    render json: Message.find(params[:id])
+    begin
+      render json: Message.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => error
+      render json: { error: error.message }, status: 404
+    rescue StandardError => error
+      render json: { error: error.message }, status: 422
+    end
   end
 
 end
