@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   post 'messages', to: 'messages#create'
 
+  get 'messages/:id', to: 'messages#show'
+
   root to: 'messages#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

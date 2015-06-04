@@ -8,4 +8,8 @@ class MessagesController < ApplicationController
     new_message = Message.create(user: params[:user], chatroom: params[:chatroom], message: params[:message])
     render json: new_message
   end
+
+  def show
+    render json: Message.find(params[:id])
+  end
 end
