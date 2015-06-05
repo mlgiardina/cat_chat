@@ -23,10 +23,10 @@ class MessagesController < ApplicationController
     end
   end
 
-  # def display_stats
-  #   users = []
-  #   users.push(User.)
-  #   topTenUsers =
-  #   render json: { mostPopularChatroom, topTenUsers, recentlyActiveUsers }
-  # end
+  def display_stats
+    users = []
+    users.push(User.)
+    topTenUsers =
+    render json: { mostPopularChatroom, topTenUsers, recentlyActiveUsers }
+  end
 end
