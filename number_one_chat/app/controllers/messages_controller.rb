@@ -15,7 +15,8 @@ class MessagesController < ApplicationController
 
   def create
     begin
-      render json: Message.create(user_id: User.find_or_create_by(name: params[:user]).id, chatroom_id: Chatroom.where(name: params[:chatroom]).first.id, message: params[:message])
+      new_message = Message.create(user_id: User.find_or_create_by(name: params[:user]).id, chatroom_id: Chatroom.find_or_create_by(name: params[:chatroom]).id, message: params[:message])
+      render json: { user: new_message.user.name, chatroom: new_message.chatroom.name, message: new_message.message }
     rescue ActiveRecord::RecordNotFound => error
       render json: { error: error.message }, status: 404
     rescue StandardError => error
@@ -25,7 +26,8 @@ class MessagesController < ApplicationController
 
   # def display_stats
   #   users = []
-  #   users.push(User.)
+  #   User.each do |user|
+  #     user.messages.count
   #   topTenUsers =
   #   render json: { mostPopularChatroom, topTenUsers, recentlyActiveUsers }
   # end
