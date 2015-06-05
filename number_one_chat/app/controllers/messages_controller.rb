@@ -24,4 +24,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def display_stats
+    users = []
+    messages = []
+
+  end
+
 end

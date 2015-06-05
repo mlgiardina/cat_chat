@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'messages/:id', to: 'messages#show'
 
+  get 'stats', to: 'messages#display_stats'
+
   root 'messages#index'
 
   match '*not_found_route', to: 'application#skip_cors', via: [:get, :post, :put, :delete]
