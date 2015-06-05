@@ -44,7 +44,7 @@ class MessagesController < ApplicationController
       x["message_count"] = chatroom.messages.count
       chatrooms.push(x)
     end
-    @top_chatroom = chatrooms.sort_by { |key| key["message_count"]}.reverse.first["name"]
+    @top_chatroom = chatrooms.sort_by { |key| key["message_count"]}.reverse.first
   end
 
   def display_stats
