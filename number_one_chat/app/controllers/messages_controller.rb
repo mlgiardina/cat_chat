@@ -24,11 +24,16 @@ class MessagesController < ApplicationController
     end
   end
 
-  # def display_stats
-  #   users = []
-  #   User.each do |user|
-  #     user.messages.count
-  #   topTenUsers =
-  #   render json: { mostPopularChatroom, topTenUsers, recentlyActiveUsers }
-  # end
+  def display_stats
+    users = []
+    User.all.each do |user|
+      x = {}
+      x["user"] = user.name
+      x["message_count"] = user.messages.count
+      users.push(x)
+    end
+    top_users = users.sort_by { |key| key["message_count"]}.reverse.first(10)
+    render json: { topTenUsers: top_users }
+  end
+
 end
