@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   post 'messages', to: 'messages#create'
 
-  get 'stats', to: 'messages#display_stats'
+  # get 'stats', to: 'messages#display_stats'
 
   root 'messages#index'
 
