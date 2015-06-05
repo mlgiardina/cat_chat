@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604201005) do
+ActiveRecord::Schema.define(version: 20150605143219) do
 
-  create_table "messages", force: :cascade do |t|
-    t.string   "user"
-    t.string   "chatroom"
-    t.text     "message"
+  create_table "chatrooms", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "chatroom_id", null: false
+    t.text     "message"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "chatroom_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
