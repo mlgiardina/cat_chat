@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   post 'messages', to: 'messages#create'
 
-  get 'messages/:id', to: 'messages#show'
-
   get 'stats', to: 'messages#display_stats'
 
   root 'messages#index'
