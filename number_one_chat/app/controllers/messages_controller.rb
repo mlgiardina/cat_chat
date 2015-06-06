@@ -2,15 +2,15 @@ class MessagesController < ApplicationController
 
   def index
     messages_object = Message.all
-     all_messages = []
-      messages_object.each do |message|
-        deliverable = {}
-        deliverable["user"] = message.user.name
-        deliverable["chatroom"] = message.chatroom.name
-        deliverable["message"] = message.message
-        deliverable["created_at"] = message.created_at
-        all_messages.push(deliverable)
-      end
+    all_messages = []
+    messages_object.each do |message|
+      deliverable = {}
+      deliverable["user"] = message.user.name
+      deliverable["chatroom"] = message.chatroom.name
+      deliverable["message"] = message.message
+      deliverable["created_at"] = message.created_at
+      all_messages.push(deliverable)
+    end
     render json: all_messages
   end
 
@@ -60,11 +60,9 @@ class MessagesController < ApplicationController
   end
 
   def display_stats
-
     get_top_users
     get_top_chatroom
     get_recent_users
-
     render json: { topTenUsers: @top_users, mostPopularChatroom: @top_chatroom, recentlyActiveUsers: @recently_active_users }
   end
 
