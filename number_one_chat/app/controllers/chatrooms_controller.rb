@@ -29,4 +29,15 @@ class ChatroomsController < ApplicationController
     end
   end
 
+  def create
+    begin
+      chat = Chatroom.find_or_create_by(name: params[:name].downcase.parameterize.underscore)
+      render json: chat
+    rescue ActiveRecord::RecordNotFound => error
+      render json: { error: error.message }, status: 404
+    rescue StandardError => error
+      render json: { error: error.message }, status: 422
+    end
+  end
+
 end

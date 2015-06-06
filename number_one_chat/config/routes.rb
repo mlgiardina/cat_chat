@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'messages', to: 'messages#index'
 
-  get 'chatrooms/:chatroom', to: 'chatrooms#show'
+  post 'chatrooms/create', to: 'chatrooms#create'
 
-  post 'chatrooms/new', to: 'chatrooms#create'
+  get 'chatrooms/:chatroom', to: 'chatrooms#show'
 
   get 'chatrooms', to: 'chatrooms#index'
 
@@ -12,11 +12,11 @@ Rails.application.routes.draw do
 
   get 'stats', to: 'messages#display_stats'
 
-  root 'messages#index'
-
   get '/users', to: 'users#index'
 
   get 'users/:name', to: 'users#show'
+
+  root 'messages#index'
 
   match '*not_found_route', to: 'application#skip_cors', via: [:get, :post, :put, :delete]
   # The priority is based upon order of creation: first created -> highest priority.
