@@ -49,6 +49,7 @@ class MessagesController < ApplicationController
       chatrooms.push(x)
     end
     @top_chatroom = chatrooms.sort_by { |key| key["message_count"]}.reverse.first
+    @top_chatroom["name"].gsub!(/_/, ' ')
   end
 
   def get_recent_users
