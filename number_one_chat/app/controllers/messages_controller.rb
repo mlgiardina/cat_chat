@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     messages_object.each do |message|
       deliverable = {}
       deliverable["user"] = message.user.name
-      deliverable["chatroom"] = message.chatroom.name
+      deliverable["chatroom"] = message.chatroom.name.gsub(/_/,  ' ')
       deliverable["message"] = message.message
       deliverable["created_at"] = message.created_at
       all_messages.push(deliverable)
