@@ -18,10 +18,10 @@ class MessagesController < ApplicationController
     begin
       new_message = Message.create(
         user_id: User.find_or_create_by(name: params[:user].downcase).id,
-        chatroom_id: Chatroom.find_or_create_by(name: params[:chatroom].downcase).id,
+        chatroom_id: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore).id,
         message: params[:message]
         )
-      render json: { user: new_message.user.name, chatroom: new_message.chatroom.name, message: new_message.message, created_at: new_message.created_at }
+      render json: { user: new_message.user.name, chatroom: new_message.chatroom.name.gsub(/_/, ' '), message: new_message.message, created_at: new_message.created_at }
     rescue ActiveRecord::RecordNotFound => error
       render json: { error: error.message }, status: 404
     rescue StandardError => error

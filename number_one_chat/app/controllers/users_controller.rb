@@ -21,4 +21,8 @@ class UsersController < ApplicationController
       render json: { error: error.message }, status: 422
     end
   end
+
+  def index
+    render json: User.all
+  end
 end

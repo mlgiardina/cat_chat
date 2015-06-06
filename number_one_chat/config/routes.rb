@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   root 'messages#index'
 
+  get '/users', to: 'users#index'
+
   get 'users/:name', to: 'users#show'
 
   match '*not_found_route', to: 'application#skip_cors', via: [:get, :post, :put, :delete]
