@@ -47,12 +47,25 @@ class MessagesController < ApplicationController
     @top_chatroom = chatrooms.sort_by { |key| key["message_count"]}.reverse.first
   end
 
+  def get_recent_users
+    recent_messages = Message.all.select { |message| message.created_at > (Time.now - 14400) }
+    @recent_users = []
+    recent_messages.each do |message|
+      unless @recent_users.any? {|user| user.id == message.user_id}
+        @recent_users.push(message.user)
+      end
+    @recently_active_users = []
+    @recent_users.each { |user| @recently_active_users.push(user.name) }
+    end
+  end
+
   def display_stats
 
     get_top_users
     get_top_chatroom
+    get_recent_users
 
-    render json: { topTenUsers: @top_users, mostPopularChatroom: @top_chatroom }
+    render json: { topTenUsers: @top_users, mostPopularChatroom: @top_chatroom, recentlyActiveUsers: @recently_active_users }
   end
 
 end
