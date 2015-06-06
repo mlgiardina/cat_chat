@@ -16,10 +16,17 @@ class MessagesController < ApplicationController
 
   def create
     begin
+      censored_message = params[:message]
+      censored_message.gsub!(/fuck/, 'f🙀🙀k')
+      censored_message.gsub!(/shit/, 's🙀🙀t')
+      censored_message.gsub!(/ass\b/, 'a🙀🙀')
+      censored_message.gsub!(/ass/, 'a🙀🙀')
+      censored_message.gsub!(/bitch/, 'b🙀🙀🙀🙀h')
+      censored_message.gsub!(/kitties/, "<iframe width='560' height='315' src='https://www.youtube.com/embed/MqqJusieOIw?t=13s&autoplay=1' frameborder='0' allowfullscreen></iframe>")
       new_message = Message.create(
         user_id: User.find_or_create_by(name: params[:user].downcase).id,
         chatroom_id: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore).id,
-        message: params[:message]
+        message: censored_message
         )
       render json: { user: new_message.user.name, chatroom: new_message.chatroom.name.gsub(/_/, ' '), message: new_message.message, created_at: new_message.created_at }
     rescue ActiveRecord::RecordNotFound => error
