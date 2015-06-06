@@ -5,11 +5,11 @@ class UsersController < ApplicationController
       if User.exists?(name: params[:name])
         requested_user = User.where(name: params[:name].downcase).first
         requested_user.messages.each do |message|
-          user_messages = {}
-          user_messages["message"] = message.message
-          user_messages["chatroom"] = message.chatroom.name
-          user_messages["created_at"] = message.created_at
-          requested_messages.push(user_messages)
+          message_info = {}
+          message_info["message"] = message.message
+          message_info["chatroom"] = message.chatroom.name
+          message_info["created_at"] = message.created_at
+          requested_messages.push(message_info)
         end
         render json: { name: requested_user.name, messages: requested_messages }
       else

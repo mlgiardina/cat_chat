@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
   get 'messages', to: 'messages#index'
 
+  get 'chatrooms/:chatroom', to: 'chatrooms#show'
+
+  post 'chatrooms/new', to: 'chatrooms#create'
+
+  get 'chatrooms', to: 'chatrooms#index'
+
   post 'messages', to: 'messages#create'
 
   get 'stats', to: 'messages#display_stats'
