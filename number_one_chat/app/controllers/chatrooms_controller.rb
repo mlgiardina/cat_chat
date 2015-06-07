@@ -16,6 +16,7 @@ class ChatroomsController < ApplicationController
       recent_chatroom_messages = chatroom_messages.select { |message| message.created_at > (Time.now - 300) }
       recent_chatroom_messages.each do |message|
         message_object = {}
+        message_object["id"] = message.id
         message_object["user"] = User.find(message.user).name
         message_object["message"] = message.message
         message_object["created_at"] = message.created_at

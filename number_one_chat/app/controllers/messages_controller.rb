@@ -4,12 +4,13 @@ class MessagesController < ApplicationController
     messages_object = Message.all
     all_messages = []
     messages_object.each do |message|
-      deliverable = {}
-      deliverable["user"] = message.user.name
-      deliverable["chatroom"] = message.chatroom.name.gsub(/_/,  ' ')
-      deliverable["message"] = message.message
-      deliverable["created_at"] = message.created_at
-      all_messages.push(deliverable)
+      single_message = {}
+      single_message["id"] = message.id
+      single_message["user"] = message.user.name
+      single_message["chatroom"] = message.chatroom.name.gsub(/_/,  ' ')
+      single_message["message"] = message.message
+      single_message["created_at"] = message.created_at
+      all_messages.push(single_message)
     end
     render json: all_messages
   end
@@ -44,7 +45,7 @@ class MessagesController < ApplicationController
         chatroom_id: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore).id,
         message: @censored_message
         )
-      render json: { user: new_message.user.name, chatroom: new_message.chatroom.name.gsub(/_/, ' '), message: new_message.message, created_at: new_message.created_at }
+      render json: { id: new_message.id, user: new_message.user.name, chatroom: new_message.chatroom.name.gsub(/_/, ' '), message: new_message.message, created_at: new_message.created_at }
       check_bot_response
     rescue ActiveRecord::RecordNotFound => error
       render json: { error: error.message }, status: 404
