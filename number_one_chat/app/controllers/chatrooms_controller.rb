@@ -12,7 +12,7 @@ class ChatroomsController < ApplicationController
   def show
     begin
       current_chatroom = []
-      chatroom_messages = Chatroom.where(name: params[:chatroom].parameterize.underscore).first.messages
+      chatroom_messages = Chatroom.where(name: params[:chatroom].parameterize.underscore).first.messages.order(:created_at)
       recent_chatroom_messages = chatroom_messages.select { |message| message.created_at > (Time.now - 300) }
       recent_chatroom_messages.each do |message|
         message_object = {}
