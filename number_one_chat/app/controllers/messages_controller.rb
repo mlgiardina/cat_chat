@@ -26,15 +26,15 @@ class MessagesController < ApplicationController
   def check_bot_response
     case params[:message]
     when "amiright"
-      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase), message: "You are never right, human.")
+      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore), message: "You are never right, human.")
     when "is anyone here?"
-      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase), message: "I am always here.")
+      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore), message: "I am always here.")
     when "meow"
-      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase), message: "Hello, brethren.")
+      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore), message: "Hello, brethren.")
     when "woof"
-      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase), message: "Your kind is not welcome, mutt.")
+      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore), message: "Your kind is not welcome, mutt.")
     when "help"
-      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase), message: "I refuse.")
+      Message.create(user: User.find_or_create_by(name:"cat overlord"), chatroom: Chatroom.find_or_create_by(name: params[:chatroom].downcase.parameterize.underscore), message: "I refuse.")
     end
   end
 
