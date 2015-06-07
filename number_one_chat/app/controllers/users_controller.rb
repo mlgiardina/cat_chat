@@ -6,6 +6,7 @@ class UsersController < ApplicationController
         requested_user = User.where(name: params[:name].downcase).first
         requested_user.messages.each do |message|
           message_info = {}
+          message_info["id"] = message.id
           message_info["message"] = message.message
           message_info["chatroom"] = message.chatroom.name.gsub(/_/, ' ')
           message_info["created_at"] = message.created_at
