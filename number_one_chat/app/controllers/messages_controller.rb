@@ -16,11 +16,11 @@ class MessagesController < ApplicationController
 
   def filter_swear_words
     @censored_message = params[:message]
-    @censored_message.gsub!(/fuck/, 'censored')
-    @censored_message.gsub!(/shit/, 'censored')
-    @censored_message.gsub!(/ass\b/, 'censored')
-    @censored_message.gsub!(/ass/, 'censored')
-    @censored_message.gsub!(/bitch/, 'censored')
+    @censored_message.gsub!(/fuck/, 'beep')
+    @censored_message.gsub!(/shit/, 'beep')
+    @censored_message.gsub!(/ass\b/, 'beep')
+    @censored_message.gsub!(/ass/, 'beep')
+    @censored_message.gsub!(/bitch/, 'beep')
   end
 
   def check_bot_response
