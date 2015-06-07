@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     @censored_message.gsub!(/ass/, 'beep')
     @censored_message.gsub!(/bitch/, 'beep')
     @censored_message.gsub!(/vagina/, 'beep')
-    @censored_message.gsub!(/penis/), 'beep')
+    @censored_message.gsub!(/penis/, 'beep')
   end
 
   def check_bot_response
