@@ -1,6 +1,10 @@
 #Cat Chat
 ##Description
 I was part of a three-person team that created a chat application. I wrote the backend for our application, which is the code in this repository. To use the chat application, go <a href="http://KeithReynoldsWorld.github.io"> here</a>.
+
+Trello: <a href="https://trello.com/b/Kfe43YYp/team-number-one">Here</a>
+
+Hackpad: <a href="https://hackpad.com/Team-Number-One-m4KVoajsYKX">Here</a>
 ##Features
 - Usernames
 - All messages can be seen by other users in real time
